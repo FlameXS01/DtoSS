@@ -1,0 +1,57 @@
+    Framework Principal: Next.js 15+ (con App Router)
+
+    Lenguaje: TypeScript (en modo estricto)
+
+    Estado del Servidor (Server State): TanStack Query
+
+    Estado del Cliente (UI State): Zustand
+
+    Estilos: Tailwind CSS
+
+    Estructura de Carpetas: Feature-based (basada en funcionalidades)
+
+
+
+src/
+├── app/                   # (Next.js App Router) Rutas y layouts 
+│   ├── layout.tsx
+│   ├── page.tsx           # Página de inicio
+│   └── dashboard/
+│       ├── layout.tsx
+│       └── page.tsx
+│
+├── components/            # Componentes genéricos y reutilizables (UI Kit) [citation:7][citation:8]
+│   ├── ui/
+│   │   ├── Button/
+│   │   ├── Card/
+│   │   └── ...
+│   └── layouts/           # Componentes de layout (Header, Footer)
+│
+├── features/              # CORAZÓN DE LA APP: Módulos por funcionalidad [citation:1][citation:7]
+│   ├── auth/              # Funcionalidad de autenticación
+│   │   ├── components/    # Componentes específicos de auth (LoginForm)
+│   │   ├── hooks/         # useAuth, useLogin, etc.
+│   │   ├── services/      # Llamadas a la API de auth
+│   │   └── types/         # Tipos específicos de auth
+│   │
+│   ├── dashboard/         # Funcionalidad del dashboard
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   └── ... (otras features: products, profile, etc.)
+│
+├── stores/                # Almacenes globales de Zustand [citation:8]
+│   ├── uiStore.ts         # Tema, sidebar, etc.
+│   └── ...
+│
+├── lib/                   # Configuraciones de clientes (TanStack Query, axios) [citation:8]
+│   ├── apiClient.ts
+│   └── react-query.ts
+│
+├── utils/                 # Funciones helper [citation:7][citation:8]
+│   └── formatDate.ts
+│
+└── types/                 # Tipos globales de TypeScript
+    └── global.d.ts
