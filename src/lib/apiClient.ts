@@ -1,4 +1,6 @@
 import axios from 'axios'; 
+import { useAuthStore } from '../stores/authStore';
+// No podemos usar hooks fuera de componentes, necesitamos acceder al estado directamente
 
 const baseURL = 'http://127.0.0.1:8000/eCommerce';
 
@@ -13,9 +15,9 @@ export const apiClient = axios.create({
 apiClient.interceptors.request.use(
     (config) => {
     // Obtener token del store (Zustand) 
-        const token = localStorage.getItem('access_token');
+        const token = useAuthStore.getState().token;
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `Bearer ${token}`;
         }
         return config; 
     },
@@ -39,3 +41,4 @@ apiClient.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+

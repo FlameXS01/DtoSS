@@ -20,8 +20,8 @@ src/
 ├── features/
 │   ├── auth/             # Login, registro, logout
 │   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── services/
+│   │   ├── hooks/        # Envuelve el contexto para que React pueda manejar la peticion
+│   │   ├── services/       
 │   │   ├── types/
 │   │   └── index.ts
 │   └── users/            # Gestión de usuarios
