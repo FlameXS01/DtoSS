@@ -1,12 +1,12 @@
-import { useUsers } from '../hooks/useUsers';
-import { UserCard } from '../components/UserCard';
+import { useBusineses } from '../hooks/useBusiness';
+import { BusinessCard } from '../components/BusinessCard';
 import { useState } from 'react';
-import type { PaginationParams } from '../types/userTypes';
+import type { PaginationParams } from '../types/businessTypes';
 import Button from '../../../components/ui/Button';
 
-export const UsersPage = () => {
+export const BusinessPage = () => {
   const [pagination, setPagination] = useState<PaginationParams>({ skip: 0, limit: 10 });
-  const { data: users, isLoading, error } = useUsers(pagination);
+  const { data: business, isLoading, error } = useBusineses(pagination);
 
   const handleNextPage = () => {  // Siempre cambia el valor de skip y limit, aumenta skip en el valor de limit
     setPagination((prev) => ({ ...prev, skip: (prev.skip || 0) + (prev.limit || 10) }));
@@ -16,15 +16,15 @@ export const UsersPage = () => {
     setPagination((prev) => ({ ...prev, skip: Math.max(0, (prev.skip || 0) - (prev.limit || 10)) }));
   };
 
-  if (isLoading) return <div className="p-8 text-center">Cargando usuarios...</div>;
-  if (error) return <div className="p-8 text-center text-red-600">Error al cargar usuarios</div>;
+  if (isLoading) return <div className="p-8 text-center">Cargando negocios...</div>;
+  if (error) return <div className="p-8 text-center text-red-600">Error al cargar negocios</div>;
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Usuarios</h1>
+      <h1 className="text-2xl font-bold mb-6">Negocios</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {users?.map((user) => (
-          <UserCard key={user.id} user={user} />
+        {business?.map((buss) => (
+          <BusinessCard key={buss.id} business={buss} />   // la prop se llama business
         ))}
       </div>
       {/* Paginación simple */}
@@ -37,11 +37,11 @@ export const UsersPage = () => {
           Anterior
         </Button>
         <span className="px-4 py-2">
-          Mostrando {pagination.skip + 1} - {pagination.skip + (users?.length || 0)}
+          Mostrando {pagination.skip + 1} - {pagination.skip + (business?.length || 0)}
         </span>
         <Button
           onClick={handleNextPage}
-          disabled={users?.length === 0 || (users?.length || 0) < (pagination.limit || 10)}
+          disabled={business?.length === 0 || (business?.length || 0) < (pagination.limit || 10)}
           className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
         >
           Siguiente

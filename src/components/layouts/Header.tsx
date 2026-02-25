@@ -18,6 +18,7 @@ export const Header = () => {
         <div className="flex space-x-4">
           <Link to="/dashboard" className="text-gray-700 hover:text-indigo-600">Dashboard</Link>
           <Link to="/users" className="text-gray-700 hover:text-indigo-600">Usuarios</Link>
+          <Link to="/business" className="text-gray-700 hover:text-indigo-600">Negocios</Link>
         </div>
         <button
           onClick={handleLogout}

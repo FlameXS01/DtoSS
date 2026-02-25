@@ -4,6 +4,8 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { UsersPage } from '../features/users/pages/UsersPage';
 import { UserDetailPage } from '../features/users/pages/UserDetailPage';
 import { Layout } from '../components/layouts/Layout';
+import { BusinessPage } from '../features/business/pages/BusinessPage';
+import { BusinessDetailPage } from '../features/business/pages/BusinessDetailPage';
 
 
 
@@ -27,6 +29,9 @@ export const AppRoutes = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:id" element={<UserDetailPage />} />
+          <Route path="/business" element={<BusinessPage />} />
+          <Route path="/business/:id" element={<BusinessDetailPage />} />
+
         </Route>
       </Route>
 
