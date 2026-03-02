@@ -6,16 +6,9 @@ import { UserDetailPage } from '../features/users/pages/UserDetailPage';
 import { Layout } from '../components/layouts/Layout';
 import { BusinessPage } from '../features/business/pages/BusinessPage';
 import { BusinessDetailPage } from '../features/business/pages/BusinessDetailPage';
+import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
 
 
-
-// Componente temporal para el dashboard
-const Dashboard = () => (
-  <div className="p-8">
-    <h1 className="text-2xl font-bold">Dashboard</h1>
-    <p>Bienvenido al dashboard (en construcción)</p>
-  </div>
-);
 
 export const AppRoutes = () => {
   return (
@@ -26,12 +19,11 @@ export const AppRoutes = () => {
       {/* Rutas protegidas */}
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:id" element={<UserDetailPage />} />
           <Route path="/business" element={<BusinessPage />} />
           <Route path="/business/:id" element={<BusinessDetailPage />} />
-
         </Route>
       </Route>
 

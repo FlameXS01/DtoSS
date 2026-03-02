@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { businessApi } from '../services/businessApi';
-import type { PaginationParams } from '../types/businessTypes';
+import type { Business, BusinessResponse, PaginationParams } from '../types/businessTypes';
 
 
 // Validaciones a la clase de servicio
 // Estas son las que realmente se usan desde el componente
 export const useBusineses = (params?: PaginationParams) => {
-    return useQuery({
+    return useQuery<BusinessResponse>({
         queryKey: ['busineses', params],
         queryFn: () => businessApi.getBusiness(params),
     });

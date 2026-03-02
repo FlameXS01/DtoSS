@@ -34,8 +34,14 @@ apiClient.interceptors.response.use(
             // Podríamos disparar un evento para que el store de auth se actualice
             // Es lo q haremos posteriormente
             // Por ahora, solo redirigimos si estamos en el cliente
-            if (typeof window !== 'undefined') {
-                window.location.href = '/login'
+            const isLoginRequest = error.config?.url?.includes('/auth/login');
+      
+            if (!isLoginRequest) {
+                // Solo redirigimos si NO es login (token expirado, etc.)
+                useAuthStore.getState().logout(); // Limpiamos el store
+                if (typeof window !== 'undefined') {
+                window.location.href = '/login';
+                }
             }
         }
         return Promise.reject(error);

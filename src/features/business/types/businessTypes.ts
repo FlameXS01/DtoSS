@@ -32,4 +32,7 @@ export interface PaginationParams {
   limit?: number;
 }
 
-export type BusinessResponse = Business[];
+export interface BusinessResponse{
+  items: Business;
+  total: number;
+}
