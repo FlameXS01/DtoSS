@@ -7,6 +7,7 @@ import { Layout } from '../components/layouts/Layout';
 import { BusinessPage } from '../features/business/pages/BusinessPage';
 import { BusinessDetailPage } from '../features/business/pages/BusinessDetailPage';
 import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
+import { ProductsPage } from '../features/products/pages/ProductsPage';
 
 
 
@@ -24,6 +25,7 @@ export const AppRoutes = () => {
           <Route path="/users/:id" element={<UserDetailPage />} />
           <Route path="/business" element={<BusinessPage />} />
           <Route path="/business/:id" element={<BusinessDetailPage />} />
+          <Route path="/products" element={<ProductsPage />} />
         </Route>
       </Route>
 

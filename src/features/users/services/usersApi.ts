@@ -108,7 +108,7 @@ export const usersApi = {
   },
 
   // Obtener negocios del usuario actual
-  getUserBusinesses: async (): Promise<Business[]> => {
+  getUserBusinesses: async (): Promise<BusinessResponse> => {
     const response = await apiClient.get<BusinessResponse>('/users/me/businesses/');
     return response.data;
   },
