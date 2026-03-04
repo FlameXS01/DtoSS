@@ -19,7 +19,7 @@ export interface ProductVariant {
   option1: string | null;
   option2: string | null;
   option3: string | null;
-  price: number | null;      // Precio específico de la variante
+  price: number | null;                   // Precio específico de la variante
   compare_price: number | null;
   quantity: number;
   product_id: number;
@@ -79,7 +79,7 @@ export interface ProductListItem {
   business_id: number;
   created_at: string;
   // Podemos incluir la imagen principal para mostrarla rápido
-  main_image?: string;       // URL de la imagen principal (si existe)
+  images?: string;
   variant_count?: number;    // Número de variantes (útil para inventario)
 }
 
@@ -209,7 +209,7 @@ export type ProductPaginationParams = PaginationParams & ProductFilters;
 
 
 export interface ProductsResponse {
-  items: ProductListItem[];
+  items: Product[];
   total: number;
 }
 
