@@ -16,7 +16,10 @@ export const UserDetailPage = () => {
   const isOwnProfile = currentUser?.id === userId;
 
   const { data: user, isLoading, error, refetch } = useUser(userId);
-  const { data: businesses } = useUserBusinesses(); // O usar un hook específico para negocios de este usuario si existe
+  const { data: businesses } = useUserBusinesses(userId); 
+
+  const items = businesses?.items || [];
+  const total = businesses?.total || 0;
 
   const deactivateMutation = useDeactivateUser();
   const activateMutation = useActivateUser();
@@ -74,11 +77,11 @@ export const UserDetailPage = () => {
         {/* Cabecera con avatar y nombre */}
         <div className="flex items-center space-x-4 mb-6">
           {user.avatar_url ? (
-            <img src={user.avatar_url} alt={user.username} className="w-20 h-20 rounded-full object-cover" />
+            <img src={user.avatar_url} alt={user.username || 'usuario'} className="w-20 h-20 rounded-full object-cover" />
           ) : (
             <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center">
               <span className="text-gray-600 text-2xl">
-                {user.first_name?.[0] || user.username[0]}
+                {user.first_name?.[0] || user.username?.[0]}
               </span>
             </div>
           )}
@@ -126,12 +129,12 @@ export const UserDetailPage = () => {
         </div>
 
         {/* Negocios asociados (si existen) */}
-        {businesses && businesses.length > 0 && (
+        {items && total > 0 && (
           <div className="mb-6">
             <h2 className="font-semibold text-gray-700 mb-2">Negocios asociados</h2>
             <ul className="list-disc list-inside">
-              {businesses.map((biz) => (
-                <li key={biz.id}>{biz.name}</li>
+              {items.map((biz) => (
+                <li key={biz.id}>{biz.legal_name}</li>
               ))}
             </ul>
           </div>

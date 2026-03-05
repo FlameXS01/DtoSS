@@ -22,6 +22,7 @@ export const usersKeys = {
   byUsername: (username: string) => [...usersKeys.details(), 'by_username', username] as const,
   search: (term: string, params: PaginationParams) => [...usersKeys.lists(), 'search', term, params] as const,
   businesses: () => ['userBusinesses'] as const,
+  businessesBy: (id: number) => [...usersKeys.businesses(), id] as const,
 };
 
 // ----- Consultas (GET) -----
@@ -79,10 +80,18 @@ export const useUsersByTerm = (term: string, params?: PaginationParams) => {
 };
 
 // Negocios del usuario actual
-export const useUserBusinesses = () => {
+export const useUserMeBusinesses = () => {
   return useQuery({
     queryKey: usersKeys.businesses(),
-    queryFn: () => usersApi.getUserBusinesses(),
+    queryFn: () => usersApi.getUserMeBusinesses(),
+  });
+};
+
+// Negocios del usuario actual
+export const useUserBusinesses = (id: number) => {
+  return useQuery({
+    queryKey: usersKeys.businessesBy(id),
+    queryFn: () => usersApi.getUserBusinesses(id),
   });
 };
 

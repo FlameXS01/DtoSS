@@ -108,8 +108,14 @@ export const usersApi = {
   },
 
   // Obtener negocios del usuario actual
-  getUserBusinesses: async (): Promise<BusinessResponse> => {
-    const response = await apiClient.get<BusinessResponse>('/users/me/businesses/');
+  getUserMeBusinesses: async (): Promise<BusinessResponse> => {
+    const response = await apiClient.get<BusinessResponse>('/auth/me/business/');
+    return response.data;
+  },
+
+  // Obtener negocios del usuario actual
+  getUserBusinesses: async (id: number): Promise<BusinessResponse> => {
+    const response = await apiClient.get<BusinessResponse>(`/users/business/${id}`);
     return response.data;
   },
 

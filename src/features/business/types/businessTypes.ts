@@ -20,6 +20,7 @@ export interface Business {
   tax_rate: number | null;
   status: BusinessStatus;
   is_verified: boolean;
+  owner_id: number;
   verification_data: Record<string, any> | null; // Mejor que 'JSON'
   created_at: string;       // ISO date string
   updated_at: string | null;

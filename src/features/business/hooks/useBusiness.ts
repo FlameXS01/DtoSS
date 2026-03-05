@@ -114,6 +114,17 @@ export const useVerifyBusiness = () => {
     },
   });
 };
+// tengo que hacer esta, hace lo mismo que verificar
+export const useUnverifyBusiness = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => businessApi.verifyBusiness(id),
+    onSuccess: (updatedBusiness) => {
+      queryClient.setQueryData(businessKeys.detail(updatedBusiness.id), updatedBusiness);
+      queryClient.invalidateQueries({ queryKey: businessKeys.lists() });
+    },
+  });
+};
 
 export const useUpdateBusinessStatus = () => {
   const queryClient = useQueryClient();
