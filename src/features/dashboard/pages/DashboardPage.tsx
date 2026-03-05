@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../../../components/ui/Card';
 import { useAuthStore } from '../../../stores/authStore';
 
+
 // Ejemplo de estadísticas (podrías obtenerlas de un store o servicio)
 const stats = [
   { label: 'Usuarios activos', value: '1,234', change: '+12%', icon: '👥' },
@@ -12,7 +13,6 @@ const stats = [
 
 export const DashboardPage = () => {
   const { user } = useAuthStore();
-
   return (
     <div className="space-y-6">
       {/* Header */}
