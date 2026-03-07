@@ -36,13 +36,13 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
     persist(
-        (set, get) => ({  // 👈 añadimos get para acceder al estado actual
+        (set, get) => ({  // añadimos get para acceder al estado actual
             token: null,
             user: null,
             isLoading: false,
             error: null,
 
-            // Nueva función para obtener datos del usuario
+            // función para obtener datos del usuario
             fetchUser: async () => {
                 try {
                     const response = await apiClient.get<User>('/auth/me');

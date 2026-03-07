@@ -7,8 +7,11 @@ import type {
   UserPasswordUpdate,
   PaginationParams,
   UserRole,
-  UsersResponse
+  UsersResponse,
+  UserRegister
 } from '../types/userTypes';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 // Claves para la caché
 export const usersKeys = {
@@ -104,6 +107,21 @@ export const useCreateUser = () => {
     onSuccess: () => {
       // Invalidar listas de usuarios para que se refresquen
       queryClient.invalidateQueries({ queryKey: usersKeys.lists() });
+    },
+  });
+};
+
+// Registro
+export const useRegisterUser = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (newUser: UserRegister) => usersApi.userRegister(newUser),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: usersKeys.lists() });
+      toast.success('Registro exitoso. Por favor, inicia sesión.');
+      navigate('/login');
+      // Invalidar listas de usuarios para que se refresquen
     },
   });
 };

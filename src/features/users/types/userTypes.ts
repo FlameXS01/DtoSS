@@ -14,6 +14,13 @@ export interface UserBase {
   avatar_url?: string | null;
 }
 
+export interface UserRegister {
+  username: string;
+  email: string;
+  password: string;
+  role?: UserRole; 
+}
+
 export interface UserCreate extends UserBase {
   username?: string | null;
   password: string;

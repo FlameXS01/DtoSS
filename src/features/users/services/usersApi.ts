@@ -7,7 +7,8 @@ import type {
   UserResponse, 
   UsersResponse,
   PaginationParams, 
-  UserRole
+  UserRole,
+  UserRegister
 } from '../types/userTypes';
 
 export const usersApi = {
@@ -124,4 +125,12 @@ export const usersApi = {
     const response = await apiClient.post<UserResponse>('/users/update_login');
     return response.data;
   },
+
+  // Registro de usuarios
+  userRegister: async(user: UserRegister): Promise<UserResponse> => {
+    const response = await apiClient.post<UserResponse>('/auth/register', user);
+    return response.data
+  } 
+
+
 };

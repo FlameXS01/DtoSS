@@ -120,7 +120,7 @@ export const UserDetailPage = () => {
           </div>
           <div>
             <h2 className="font-semibold text-gray-700">Creado</h2>
-            <p>{new Date(user.created_at).toLocaleDateString()}</p>
+              {user.created_at ? new Date(user.created_at).toLocaleDateString() : 'No disponible'}
           </div>
           <div>
             <h2 className="font-semibold text-gray-700">Último acceso</h2>

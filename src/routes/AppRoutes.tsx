@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { LoginForm } from '../features/auth/components/LoginForm';
 import { ProtectedRoute } from './ProtectedRoute';
 import { UsersPage } from '../features/users/pages/UsersPage';
 import { UserDetailPage } from '../features/users/pages/UserDetailPage';
@@ -9,6 +8,8 @@ import { BusinessDetailPage } from '../features/business/pages/BusinessDetailPag
 import { DashboardPage } from '../features/dashboard/pages/DashboardPage';
 import { ProductsPage } from '../features/products/pages/ProductsPage';
 import { ProductDetailPage } from '../features/products/pages/ProductDetailPage';
+import { AuthPage } from '../features/auth/pages/AuthPage';
+import { ProfilePage } from '../features/users/pages/ProfilePage';
 
 
 
@@ -16,7 +17,8 @@ export const AppRoutes = () => {
   return (
     <Routes>
       {/* Ruta pública */}
-      <Route path="/login" element={<LoginForm />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage />} />
       
       {/* Rutas protegidas */}
       <Route element={<ProtectedRoute />}>
@@ -24,6 +26,7 @@ export const AppRoutes = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:id" element={<UserDetailPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/business" element={<BusinessPage />} />
           <Route path="/business/:id" element={<BusinessDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
